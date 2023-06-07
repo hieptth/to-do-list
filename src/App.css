@@ -1,0 +1,280 @@
+:root {
+    --white: #fafafa;
+    --focusWhite: white;
+    --lightblue: #d6e5f2;
+    --black: #2C2C2C;
+    --navyBlue: #283cd7;
+}
+
+h1 {
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+}
+
+.TodoWrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+    margin-top: 5rem;
+}
+
+.TodoWrapper>.card {
+    width: min(100%, 500px);
+    margin: auto;
+    border-radius: 10px;
+    background: var(--white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    overflow: visible;
+}
+
+.TodoWrapper h1 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.TodoWrapper>.card>hr {
+    height: 1px;
+    border: none;
+    color: gray;
+    background-color: gray;
+    opacity: 0.3;
+}
+
+.cardTitle {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    padding-bottom: .5rem;
+    font-weight: 700;
+    font-size: medium;
+}
+
+.cardTitle>p {
+    cursor: pointer;
+    overflow: visible;
+}
+
+.cardTitle>p>#taskCount {
+    background-color: var(--lightblue);
+    border-radius: 10px;
+    font-size: smaller;
+    margin: 0 .2rem;
+    padding: .1rem .3rem;
+}
+
+.cardTitle>.addTaskBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.addCard {
+    width: min(100%, 100vw);
+    height: 100%;
+    min-height: 5vh;
+    margin: .5rem 0;
+    transform: scale(1.05);
+    padding: 1rem 1rem .5rem;
+    border-radius: 10px;
+    background: var(--focusWhite);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cardContent .addCard {
+    margin: .5rem 0;
+    transform: scale(1.1);
+}
+
+.addCardTitle,
+.addCardDesc {
+    border: none;
+    background: none;
+    width: 100%;
+    font-weight: lighter;
+}
+
+.addCardTitle {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.addCardDesc {
+    height: auto;
+    min-height: 50px;
+    margin-top: .5rem;
+    font-size: 12px;
+    resize: none;
+}
+
+.addCardTitle:focus,
+.addCardDesc:focus {
+    outline: none;
+}
+
+.cardContent {
+    padding: 1rem;
+    padding-top: 0;
+    overflow: visible;
+}
+
+.btnGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.groupLeft,
+.groupRight {
+    display: flex;
+    gap: .3rem;
+}
+
+.btnGroup i,
+.btnGroup button {
+    font-size: 11px;
+    padding: 0.3rem;
+    overflow: hidden;
+    border: 0.3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(14, 18, 70, 0.5);
+}
+
+.btnGroup i:hover,
+.btnGroup .cancelBtn:hover {
+    color: rgb(14, 18, 70);
+    border: 0.3px solid rgba(0, 0, 0);
+}
+
+.iconTxt {
+    margin: 0 0.2rem;
+    padding-left: 0.2rem;
+    letter-spacing: -0.3px;
+}
+
+.btnGroup .cancelBtn {
+    padding: 0 .7rem;
+    background-color: var(--focusWhite);
+}
+
+.btnGroup .addTaskBtn {
+    padding: 0 .8rem;
+    border: 0.3px solid var(--navyBlue);
+    background-color: var(--navyBlue);
+    color: var(--focusWhite);
+    opacity: 0.8;
+}
+
+.btnGroup .addTaskBtn:hover {
+    opacity: 1;
+}
+
+.cardWrapper {
+    display: flex;
+}
+
+.checkMark {
+    margin: auto;
+    padding: 0.1rem;
+    overflow: visible;
+}
+
+.checkMark input[type="checkbox"] {
+    /* To hide the default checkbox */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+
+    /* Custom unchecked box styles */
+    display: block;
+    color: var(--black);
+    width: min(1rem, 20vw);
+    height: min(1rem, 20vh);
+    outline: 0.1rem solid var(--black);
+    border-radius: 15px;
+    transform: translateY(-0.075rem);
+    cursor: pointer;
+    overflow: visible;
+}
+
+.checkMark input[type="checkbox"]:checked {
+    border: 2px solid var(--white);
+    background-color: var(--navyBlue);
+}
+
+.checkMark:hover input~.checkIcon {
+    background-color: var(--navyBlue);
+}
+
+.taskCard {
+    width: 100%;
+    padding: 0.75rem 1rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.taskCard .addCardTitle {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    padding: 0;
+    font-size: 14px;
+}
+
+.taskCard .desc {
+    margin-top: .5rem;
+    font-size: medium;
+}
+
+.taskCard :is(h1, h2, h3) {
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+.taskCard :is(h4, h5, h6) {
+    font-weight: lighter;
+    word-wrap: break-word;
+}
+
+.moreDetails i {
+    font-size: 11px;
+    padding: .5rem 0.3rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(14, 18, 70);
+}
+
+/* .btnGroup button {
+    font-size: 11px;
+    padding: 0.3rem;
+    overflow: hidden;
+    border: 0.3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(14, 18, 70, 0.5);
+} */
+
+.fa-trash:hover {
+    background-color: red;
+    color: var(--focusWhite) !important;
+    border: none !important;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.cardContent hr {
+    width: 97%;
+    margin: auto;
+    height: 1px;
+    border: none;
+    color: gray;
+    background-color: gray;
+    opacity: 0.3;
+}

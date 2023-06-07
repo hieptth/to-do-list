@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
+    list-style: none;
+    text-decoration: none;
+    overflow-x: hidden;
+}
+
+body {
+    padding: 10px;
+    background: var(--lightblue);
+}
+
+root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
