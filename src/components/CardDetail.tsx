@@ -21,9 +21,11 @@ export const CardDetail = (props: {
     e.preventDefault();
 
     if (title == "" && desc == "") {
-      console.log("ran");
       props.deleteTask(props.task.id);
-    } else !canceled && props.editTask(title, desc, props.task.id);
+    } else
+      !canceled
+        ? props.editTask(title, desc, props.task.id)
+        : props.editTask(props.task.task, props.task.desc, props.task.id);
 
     setTitle("");
     setDesc("");
