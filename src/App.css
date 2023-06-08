@@ -78,6 +78,14 @@ h1 {
     gap: 1rem;
 }
 
+.btnGroupTitle p {
+    background-color: var(--mint);
+    border-radius: 10px;
+    font-size: smaller;
+    margin: 0 .1rem;
+    padding: .1rem .5rem;
+}
+
 .card .applyFilter {
     position: absolute;
     z-index: 7;

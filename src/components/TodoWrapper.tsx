@@ -121,6 +121,7 @@ export const TodoWrapper = () => {
             Todo<span id="taskCount">{tasks.length}</span>
           </p>
           <div className="btnGroupTitle">
+            <p>{filterTask}</p>
             <button className="addTaskBtn" onClick={displayFilter}>
               <i className="fas fa-filter"></i>
             </button>
