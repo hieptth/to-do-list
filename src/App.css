@@ -1,6 +1,7 @@
 :root {
     --white: #fafafa;
     --focusWhite: white;
+    --lightGray: #E8E8E8;
     --lightblue: #d6e5f2;
     --black: #2C2C2C;
     --navyBlue: #283cd7;
@@ -66,11 +67,60 @@ h1 {
     padding: .1rem .3rem;
 }
 
-.cardTitle>.addTaskBtn {
+.cardTitle .addTaskBtn {
     border: none;
     background: none;
     cursor: pointer;
 }
+
+.btnGroupTitle {
+    display: flex;
+    gap: 1rem;
+}
+
+.card .applyFilter {
+    position: absolute;
+    z-index: 7;
+    top: 17%;
+    left: 65%;
+    transform: translate(-50%);
+    width: fit-content;
+    height: fit-content;
+    min-height: 5vh;
+    padding: .5rem;
+    margin: .2rem 0;
+    border-radius: 10px;
+    background: var(--focusWhite);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.filterGroup {
+    display: flex;
+    margin: .2rem 0;
+    cursor: pointer;
+    padding: .2rem;
+}
+
+.filterGroup:hover {
+    background-color: var(--lightGray);
+    border-radius: 5px;
+}
+
+.filterGroup p {
+    margin: 0;
+    margin-left: .5rem;
+    font-weight: bold;
+}
+
+
+/* .filterGroup>button {
+    height: .8rem;
+    width: .8rem;
+    margin: 0;
+    margin-right: .5rem;
+    border-radius: 15px;
+    border: 1px solid var(--navyBlue);
+} */
 
 .addCard {
     position: relative;

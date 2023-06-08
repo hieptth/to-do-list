@@ -52,7 +52,7 @@ export const Card = (props: {
                   <i
                     className="far fa-calendar-check"
                     style={{
-                      color: props.task.date > new Date() ? "red" : "green",
+                      color: props.task.date < new Date() ? "red" : "green",
                     }}
                   >
                     <span className="iconTxt">{currentDate}</span>

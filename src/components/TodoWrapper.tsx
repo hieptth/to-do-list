@@ -4,18 +4,19 @@ import { Card } from "./Card";
 import { AddCard } from "./AddCard";
 import { CardDetail } from "./CardDetail";
 uuidv4();
+interface todoObject {
+  id: string;
+  task: string;
+  desc: string;
+  date: Date;
+  completed: boolean;
+  isEditing: boolean;
+}
 
 export const TodoWrapper = () => {
-  interface todoObject {
-    id: string;
-    task: string;
-    desc: string;
-    date: Date;
-    completed: boolean;
-    isEditing: boolean;
-  }
-
   const [showCard, setShowCard] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  const [filterTask, setFilterTask] = useState("All");
   const [tasks, setTasks] = useState(() => {
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     if (tasks.length !== 0) return tasks;
@@ -45,6 +46,15 @@ export const TodoWrapper = () => {
 
   const displayCard = () => {
     setShowCard(!showCard);
+  };
+
+  const displayFilter = () => {
+    setShowFilter(!showFilter);
+  };
+
+  const setFilter = (filter: string) => {
+    setFilterTask(filter);
+    setShowFilter(!showFilter);
   };
 
   const addTask = (task: string, desc: string, date: Date) => {
@@ -80,7 +90,6 @@ export const TodoWrapper = () => {
         task.id === id ? { ...task, isEditing: !task.isEditing } : task
       )
     );
-    console.log("edited");
   };
 
   const editContent = (
@@ -111,10 +120,48 @@ export const TodoWrapper = () => {
           <p>
             Todo<span id="taskCount">{tasks.length}</span>
           </p>
-          <button className="addTaskBtn" onClick={displayCard}>
-            <i className="fa fa-plus"></i>
-          </button>
+          <div className="btnGroupTitle">
+            <button className="addTaskBtn" onClick={displayFilter}>
+              <i className="fas fa-filter"></i>
+            </button>
+            <button className="addTaskBtn" onClick={displayCard}>
+              <i className="fa fa-plus"></i>
+            </button>
+          </div>
         </div>
+        {showFilter && (
+          <div className="applyFilter">
+            <div
+              className="filterGroup"
+              onClick={() => {
+                setFilter("All");
+              }}
+            >
+              <i className="fa-solid fa-list"></i>
+              <p>All</p>
+            </div>
+
+            <div
+              className="filterGroup"
+              onClick={() => {
+                setFilter("Completed");
+              }}
+            >
+              <i className="fa-solid fa-check"></i>
+              <p>Completed</p>
+            </div>
+
+            <div
+              className="filterGroup"
+              onClick={() => {
+                setFilter("Pending");
+              }}
+            >
+              <i className="fa-solid fa-person-running"></i>
+              <p>Pending</p>
+            </div>
+          </div>
+        )}
         <hr></hr>
         {showCard && (
           <div className="addCard">
@@ -122,24 +169,30 @@ export const TodoWrapper = () => {
           </div>
         )}
         <div className="cardContent">
-          {tasks.map((task: todoObject) =>
-            task.isEditing ? (
-              <CardDetail
-                key={task.id}
-                task={task}
-                editTask={editContent}
-                deleteTask={deleteTask}
-              />
-            ) : (
-              <Card
-                key={task.id}
-                task={task}
-                toggleComplete={toggleComplete}
-                deleteTask={deleteTask}
-                editTask={editTask}
-              />
-            )
-          )}
+          {tasks
+            .filter((task: todoObject) => {
+              if (filterTask == "Pending") return !task.completed;
+              else if (filterTask == "Completed") return task.completed;
+              else return true;
+            })
+            .map((task: todoObject) =>
+              task.isEditing ? (
+                <CardDetail
+                  key={task.id}
+                  task={task}
+                  editTask={editContent}
+                  deleteTask={deleteTask}
+                />
+              ) : (
+                <Card
+                  key={task.id}
+                  task={task}
+                  toggleComplete={toggleComplete}
+                  deleteTask={deleteTask}
+                  editTask={editTask}
+                />
+              )
+            )}
         </div>
       </div>
     </div>
