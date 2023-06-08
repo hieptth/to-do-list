@@ -1,21 +1,32 @@
-import { FormEvent, useState } from "react";
+import { format } from "date-fns";
+import { FormEvent, SetStateAction, useState } from "react";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
 interface taskObject {
   task: string;
   id: string;
   desc: string;
+  date: Date;
   completed: boolean;
   isEditing: boolean;
 }
 
 export const CardDetail = (props: {
   task: taskObject;
-  editTask: (arg0: string, arg1: string, arg2: string) => void;
+  editTask: (arg0: string, arg1: string, arg2: Date, arg3: string) => void;
   deleteTask: (arg0: string) => void;
 }) => {
+  const date = new Date();
+
+  let defaultMonth = date.getMonth();
+  let defaultYear = date.getFullYear();
+
   const [title, setTitle] = useState(props.task.task);
   const [desc, setDesc] = useState(props.task.desc);
   const [canceled, setCancelState] = useState(false);
+  const [openDateSelect, setOpenDateSelect] = useState(false);
+  const [selected, setSelected] = useState<Date>();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -24,12 +35,27 @@ export const CardDetail = (props: {
       props.deleteTask(props.task.id);
     } else
       !canceled
-        ? props.editTask(title, desc, props.task.id)
-        : props.editTask(props.task.task, props.task.desc, props.task.id);
+        ? props.editTask(
+            title,
+            desc,
+            selected !== undefined ? selected : props.task.date,
+            props.task.id
+          )
+        : props.editTask(
+            props.task.task,
+            props.task.desc,
+            props.task.date,
+            props.task.id
+          );
 
     setTitle("");
     setDesc("");
     setCancelState(false);
+  };
+
+  const handleDayPick = (e: SetStateAction<Date | undefined>) => {
+    setSelected(e);
+    setOpenDateSelect(false);
   };
 
   return (
@@ -62,10 +88,26 @@ export const CardDetail = (props: {
             }}
           />
 
+          {openDateSelect && (
+            <DayPicker
+              mode="single"
+              defaultMonth={new Date(defaultYear, defaultMonth)}
+              selected={selected}
+              onSelect={handleDayPick}
+            />
+          )}
+
           <div className="btnGroup">
             <div className="groupLeft">
-              <i className="far fa-calendar-check">
-                <span className="iconTxt">Change Date</span>
+              <i
+                className="far fa-calendar-check"
+                onClick={() => {
+                  setOpenDateSelect(!openDateSelect);
+                }}
+              >
+                <span className="iconTxt">
+                  {selected ? format(selected, "PP") : "Change Date"}
+                </span>
               </i>
               <i
                 className="fas fa-trash"

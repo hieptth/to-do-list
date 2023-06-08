@@ -1,23 +1,22 @@
+import { format } from "date-fns";
+
+interface taskObject {
+  task: string;
+  id: string;
+  desc: string;
+  date: Date;
+  completed: boolean;
+  isEditing: boolean;
+}
+
 export const Card = (props: {
-  task: {
-    task: string;
-    id: string;
-    desc: string;
-    completed: boolean;
-    isEditing: boolean;
-  };
+  task: taskObject;
   toggleComplete: (arg0: string) => void;
   editTask: (arg0: string) => void;
   deleteTask: (arg0: string) => void;
 }) => {
-  const date = new Date();
-
-  let day = date.getDate();
-  date.setMonth(date.getMonth());
-  let month = date.toLocaleString("en-US", { month: "short" });
-  let year = date.getFullYear();
-
-  let currentDate = `${day} ${month} ${year}`;
+  let displayDate = new Date(props.task.date);
+  let currentDate = format(displayDate, "PP");
 
   return (
     <>
@@ -50,7 +49,12 @@ export const Card = (props: {
                   </h5>
                 </div>
                 <div className="moreDetails">
-                  <i className="far fa-calendar-check" style={{ color: "red" }}>
+                  <i
+                    className="far fa-calendar-check"
+                    style={{
+                      color: props.task.date > new Date() ? "red" : "green",
+                    }}
+                  >
                     <span className="iconTxt">{currentDate}</span>
                   </i>
                   <i className="fas fa-arrow-alt-circle-down">

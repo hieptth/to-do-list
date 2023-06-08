@@ -4,6 +4,9 @@
     --lightblue: #d6e5f2;
     --black: #2C2C2C;
     --navyBlue: #283cd7;
+    --mint: #99edc3;
+
+    --custom-font-size: 12px;
 }
 
 h1 {
@@ -70,6 +73,8 @@ h1 {
 }
 
 .addCard {
+    position: relative;
+    z-index: 5;
     width: min(100%, 100vw);
     height: 100%;
     min-height: 5vh;
@@ -79,6 +84,7 @@ h1 {
     border-radius: 10px;
     background: var(--focusWhite);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    overflow: visible;
 }
 
 .cardContent .addCard {
@@ -103,7 +109,7 @@ h1 {
     height: auto;
     min-height: 50px;
     margin-top: .5rem;
-    font-size: 12px;
+    font-size: var(--custom-font-size);
     resize: none;
 }
 
@@ -116,6 +122,45 @@ h1 {
     padding: 1rem;
     padding-top: 0;
     overflow: visible;
+}
+
+.rdp {
+    position: absolute;
+    z-index: -1;
+    left: 28%;
+    top: 97%;
+    transform: translateX(-50%);
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: .7rem;
+    border-radius: 10px;
+    background: var(--focusWhite);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+
+    /* Override default value */
+    --rdp-cell-size: 32px;
+    --rdp-caption-font-size: var(--custom-font-size);
+    --rdp-accent-color: #0000ff;
+    --rdp-background-color: #e7edff;
+    --rdp-accent-color-dark: #3003e1;
+    --rdp-background-color-dark: #180270;
+}
+
+.rdp-nav>button>svg {
+    width: var(--custom-font-size);
+    height: var(--custom-font-size);
+}
+
+.rdp-head_cell,
+.rdp-cell {
+    font-size: var(--custom-font-size);
+}
+
+.rdp-day_today:not(.rdp-day_outside) {
+    font-weight: bold;
+    font-size: calc(var(--custom-font-size) + 3px);
+    color: var(--mint);
 }
 
 .btnGroup {
@@ -270,6 +315,7 @@ h1 {
 }
 
 .cardContent hr {
+    position: relative;
     width: 97%;
     margin: auto;
     height: 1px;
@@ -277,4 +323,5 @@ h1 {
     color: gray;
     background-color: gray;
     opacity: 0.3;
+    z-index: 1;
 }

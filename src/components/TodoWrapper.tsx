@@ -10,6 +10,7 @@ export const TodoWrapper = () => {
     id: string;
     task: string;
     desc: string;
+    date: Date;
     completed: boolean;
     isEditing: boolean;
   }
@@ -17,13 +18,14 @@ export const TodoWrapper = () => {
   const [showCard, setShowCard] = useState(false);
   const [tasks, setTasks] = useState(() => {
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    if (tasks !== 5) return tasks;
+    if (tasks.length !== 0) return tasks;
     else
       return [
         {
           id: uuidv4(),
-          task: "This is a default task",
+          task: "Let's get started",
           desc: "Click here to edit description",
+          date: new Date(),
           completed: false,
           isEditing: false,
         },
@@ -45,7 +47,7 @@ export const TodoWrapper = () => {
     setShowCard(!showCard);
   };
 
-  const addTask = (task: string, desc: string) => {
+  const addTask = (task: string, desc: string, date: Date) => {
     (task !== "" || desc !== "") &&
       setTasks([
         ...tasks,
@@ -53,6 +55,7 @@ export const TodoWrapper = () => {
           id: uuidv4(),
           task: task,
           desc: desc,
+          date: date,
           completed: false,
           isEditing: false,
         },
@@ -77,13 +80,25 @@ export const TodoWrapper = () => {
         task.id === id ? { ...task, isEditing: !task.isEditing } : task
       )
     );
+    console.log("edited");
   };
 
-  const editContent = (content: string, desc: string, id: string) => {
+  const editContent = (
+    content: string,
+    desc: string,
+    date: Date,
+    id: string
+  ) => {
     setTasks(
       tasks.map((task: todoObject) =>
         task.id === id
-          ? { ...task, task: content, desc: desc, isEditing: !task.isEditing }
+          ? {
+              ...task,
+              task: content,
+              desc: desc,
+              date: date,
+              isEditing: !task.isEditing,
+            }
           : task
       )
     );
