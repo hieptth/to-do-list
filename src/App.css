@@ -89,8 +89,8 @@ h1 {
 .card .applyFilter {
     position: absolute;
     z-index: 7;
-    top: 17%;
-    left: 65%;
+    top: 17.5%;
+    left: 60%;
     transform: translate(-50%);
     width: fit-content;
     height: fit-content;
