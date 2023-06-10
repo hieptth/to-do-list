@@ -17,7 +17,7 @@ Visit the **link** provided in the terminal. The app should be up & running.
 
 ![Demo](public/assets/demo-img.png)
 
-## :thought_balloon:Code-based Structure
+## :nut_and_bolt:Code-based Structure
 The project has a super simple structure, represented as below:
 ```
 < PROJECT ROOT >
