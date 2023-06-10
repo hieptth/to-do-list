@@ -1,5 +1,17 @@
 # :heavy_check_mark:Todo List
-A simple todo list application made with ReactJS
+This project is to develop a simple Todo list application *(written in React using Vite)* that allows users to create, edit, and delete tasks. It is built using the latest ReactJS features, including hooks and state management. The application is divided into two main components: the **Todo list** and the **task editor**. 
+
+- The to-do list component displays a list of all the tasks in the application.
+- The task editor component allows users to edit and delete tasks.
+
+Implemented features include: <br>
+- Add a new task by entering a title and description.
+- Edit the title and description of an existing task by clicking on the task.
+- Mark a task as completed.
+- Delete a task.
+− Filter tasks based on their completion status (completed, pending, or all).
+- Use local storage to save the tasks so they persist upon page refresh.
+- Set a due date using a date picker for tasks.
 
 ## :thought_balloon:How to run?
 > Get the code
